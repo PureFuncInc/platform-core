@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VoidInvoice xmlns="urn:GEINV:eInvoiceMessage:C0701:3.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:GEINV:eInvoiceMessage:C0701:3.1 C0701.xsd">
+  <VoidInvoiceNumber>AA09090001</VoidInvoiceNumber>
+  <InvoiceDate>20140922</InvoiceDate>
+  <BuyerId>0000000000</BuyerId>
+  <SellerId>12345678</SellerId>
+  <VoidDate>20140922</VoidDate>
+  <VoidTime>12:05:00</VoidTime>
+  <VoidReason>MIG3.1錯誤</VoidReason>
+  <Remark>金額錯誤</Remark>
+</VoidInvoice>

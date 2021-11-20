@@ -1,0 +1,11 @@
+rootProject.name = "platform-core"
+include("common-domain")
+include("logistics-domain")
+include("member-domain")
+include("merchant-domain")
+include("oauth-domain")
+include("order-domain")
+include("payment-domain")
+include("transmit-domain")
+include("transmit-client")
+include("wallet-domain")

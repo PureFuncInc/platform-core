@@ -1,0 +1,50 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31"
+    }
+}
+
+allprojects {
+    group "net.cwvd"
+    version "1.0-SNAPSHOT"
+}
+
+subprojects {
+    apply plugin: "org.jetbrains.kotlin.jvm"
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        implementation "org.jetbrains.kotlin:kotlin-stdlib"
+        testImplementation "io.cucumber:cucumber-java:6.11.0"
+        testImplementation "io.cucumber:cucumber-junit:6.11.0"
+        testImplementation "org.junit.vintage:junit-vintage-engine:5.8.1"
+        testImplementation "org.junit.jupiter:junit-jupiter-engine:5.8.1"
+        testImplementation "io.mockk:mockk:1.12.0"
+        testImplementation "com.squareup.okhttp3:mockwebserver:4.9.2"
+        testImplementation "org.assertj:assertj-core:3.21.0"
+    }
+
+    compileKotlin {
+        kotlinOptions.jvmTarget = "11"
+    }
+
+    compileTestKotlin {
+        kotlinOptions.jvmTarget = "11"
+    }
+
+    artifacts {
+        add("archives", kotlinSourcesJar)
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}

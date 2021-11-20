@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BranchTrack xmlns="urn:GEINV:eInvoiceMessage:E0401:3.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:GEINV:eInvoiceMessage:E0401:3.1 E0401.xsd">
+  <Main>
+    <HeadBan>12345678</HeadBan>
+    <BranchBan>12345678</BranchBan>
+    <InvoiceType>07</InvoiceType>
+    <YearMonth>10310</YearMonth>
+    <InvoiceTrack>AA</InvoiceTrack>
+    <InvoiceBeginNo>00001000</InvoiceBeginNo>
+    <InvoiceEndNo>00001999</InvoiceEndNo>
+  </Main>
+  <Details>
+    <BranchTrackItem>
+      <InvoiceBeginNo>00001000</InvoiceBeginNo>
+      <InvoiceEndNo>00001249</InvoiceEndNo>
+      <InvoiceBooklet>5</InvoiceBooklet>
+    </BranchTrackItem>
+  </Details>
+</BranchTrack>

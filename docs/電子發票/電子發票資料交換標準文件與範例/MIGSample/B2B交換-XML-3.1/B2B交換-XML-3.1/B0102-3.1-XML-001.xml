@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AllowanceConfirm xsi:schemaLocation="urn:GEINV:eInvoiceMessage:B0102:3.1 B0102.xsd" xmlns="urn:GEINV:eInvoiceMessage:B0102:3.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<AllowanceNumber>BB090908080001</AllowanceNumber>
+	<AllowanceDate>20140922</AllowanceDate>
+	<BuyerId>12345678</BuyerId>
+	<SellerId>12345678</SellerId>
+	<ReceiveDate>20140922</ReceiveDate>
+	<ReceiveTime>12:05:00</ReceiveTime>
+	<Remark>Remark</Remark>
+	<AllowanceType>2</AllowanceType>
+</AllowanceConfirm>
