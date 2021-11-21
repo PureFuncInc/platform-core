@@ -2,6 +2,8 @@ package net.purefunc.transmit.sdk
 
 import net.purefunc.common.domain.data.Failure
 import net.purefunc.common.domain.data.Success
+import net.purefunc.common.domain.data.then
+import net.purefunc.common.domain.data.tryOrFailure
 import net.purefunc.transmit.external.EmailClient
 import java.util.Properties
 import javax.mail.Authenticator
@@ -18,39 +20,42 @@ class GmailClient(
 ) : EmailClient {
 
     private val properties = Properties()
+    private val emailRegex = "^(.+)@(.+)$".toRegex()
 
     init {
-        properties["mail.smtp.host"] = "smtp.gmail.com";
-        properties["mail.smtp.port"] = "587";
-        properties["mail.smtp.auth"] = "true";
+        properties["mail.smtp.host"] = "smtp.gmail.com"
+        properties["mail.smtp.port"] = "587"
+        properties["mail.smtp.auth"] = "true"
         properties["mail.smtp.starttls.enable"] = "true"
         properties["mail.smtp.ssl.protocols"] = "TLSv1.2"
     }
 
-    override fun send(subject: String, address: String, htmlContent: String) =
-        run {
-            try {
+    override fun send(subject: String, personal: String, address: String, htmlContent: String) =
+        validate(subject, personal, address, htmlContent).then {
+            tryOrFailure {
                 Session.getInstance(properties,
                     object : Authenticator() {
                         override fun getPasswordAuthentication(): PasswordAuthentication {
                             return PasswordAuthentication(userName, password)
                         }
                     })
-            } catch (ex: Exception) {
-                Failure("", "")
+                    .run {
+                        val mimeMessage = MimeMessage(this)
+                        mimeMessage.setFrom(InternetAddress(userName, personal))
+                        mimeMessage.setRecipients(Message.RecipientType.TO, arrayOf(InternetAddress(address)))
+                        mimeMessage.subject = subject
+                        mimeMessage.setContent(htmlContent, "text/html; charset=UTF-8")
+                        Transport.send(mimeMessage)
+                    }
             }
-        }.run {
-            val mimeMessage = MimeMessage(this as Session)
-            mimeMessage.setFrom(InternetAddress(userName, "\$_ purefunc"))
-            mimeMessage.setRecipients(Message.RecipientType.TO, arrayOf(InternetAddress(address)))
-            mimeMessage.subject = subject
-            mimeMessage.setContent(htmlContent, "text/html; charset=UTF-8")
+        }
 
-            try {
-                Transport.send(mimeMessage)
-                Success("Success !!!")
-            } catch (ex: Exception) {
-                Failure("", "")
-            }
+    private fun validate(subject: String, personal: String, address: String, htmlContent: String) =
+        when {
+            subject.isEmpty() -> Failure(RuntimeException("subject is empty"))
+            personal.isEmpty() -> Failure(RuntimeException("personal is empty"))
+            emailRegex.matches(address) -> Failure(RuntimeException("subject is empty"))
+            htmlContent.isEmpty() -> Failure(RuntimeException("htmlContent is empty"))
+            else -> Success("")
         }
 }

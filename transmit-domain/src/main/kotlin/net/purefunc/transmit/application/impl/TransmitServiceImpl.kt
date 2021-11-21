@@ -11,7 +11,8 @@ class TransmitServiceImpl(
     private val phoneCallClient: PhoneCallClient,
 ) : TransmitService {
 
-    override fun sendEmail(subject: String, address: String, htmlContent: String) = emailClient.send(subject, address, htmlContent)
+    override fun sendEmail(subject: String, personal: String, address: String, htmlContent: String) =
+        emailClient.send(subject, personal, address, htmlContent)
 
     override fun sendSms(phone: String, content: String) = smsClient.send(phone, content)
 

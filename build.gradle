@@ -10,7 +10,7 @@ buildscript {
 }
 
 allprojects {
-    group "net.cwvd"
+    group "net.purefunc"
     version "1.0-SNAPSHOT"
 }
 
