@@ -5,7 +5,7 @@ import io.cucumber.java.en.Then
 import io.cucumber.java.en.When
 import io.mockk.every
 import io.mockk.mockk
-import net.funpodium.common.domain.data.type.Operation
+import net.purefunc.common.domain.data.type.BusinessOperation
 import net.funpodium.member.application.impl.MemberServiceImpl
 import net.funpodium.member.domain.data.entity.Member
 import net.funpodium.member.domain.data.type.EMail
@@ -43,9 +43,9 @@ class MemberServiceTests {
             transmitClient,
             newPasswordContentGenerator
         )
-    private lateinit var loginResult: Operation
-    private lateinit var signupResult: Operation
-    private lateinit var logoutResult: Operation
+    private lateinit var loginResult: BusinessOperation
+    private lateinit var signupResult: BusinessOperation
+    private lateinit var logoutResult: BusinessOperation
 
     @Given("Pass username and password")
     fun pass_username_and_password() {
@@ -126,26 +126,26 @@ class MemberServiceTests {
 
     @Then("Login response should be success")
     fun login_response_should_be_success() {
-        Assertions.assertThat(loginResult).isEqualTo(Operation.LOGIN_SUCCESS)
+        Assertions.assertThat(loginResult).isEqualTo(BusinessOperation.LOGIN_SUCCESS)
     }
 
     @Then("Login response should be fail")
     fun login_response_should_be_fail() {
-        Assertions.assertThat(loginResult).isEqualTo(Operation.LOGIN_FAIL)
+        Assertions.assertThat(loginResult).isEqualTo(BusinessOperation.LOGIN_FAIL)
     }
 
     @Then("Signup response should be success")
     fun signup_response_should_be_success() {
-        Assertions.assertThat(signupResult).isEqualTo(Operation.SIGNUP_SUCCESS)
+        Assertions.assertThat(signupResult).isEqualTo(BusinessOperation.SIGNUP_SUCCESS)
     }
 
     @Then("Signup response should be fail")
     fun signup_response_should_be_fail() {
-        Assertions.assertThat(signupResult).isEqualTo(Operation.SIGNUP_FAIL)
+        Assertions.assertThat(signupResult).isEqualTo(BusinessOperation.SIGNUP_FAIL)
     }
 
     @Then("Logout response should be success")
     fun logout_response_should_be_success() {
-        Assertions.assertThat(logoutResult).isEqualTo(Operation.LOGOUT_SUCCESS)
+        Assertions.assertThat(logoutResult).isEqualTo(BusinessOperation.LOGOUT_SUCCESS)
     }
 }

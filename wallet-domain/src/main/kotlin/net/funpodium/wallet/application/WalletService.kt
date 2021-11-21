@@ -1,6 +1,6 @@
 package net.funpodium.wallet.application
 
-import net.funpodium.common.domain.data.type.Page
+import net.purefunc.common.domain.data.type.Page
 import net.funpodium.wallet.domain.data.entity.WalletTxRecord
 import net.funpodium.wallet.domain.data.type.Currency
 import net.funpodium.wallet.domain.data.vo.TransferResult

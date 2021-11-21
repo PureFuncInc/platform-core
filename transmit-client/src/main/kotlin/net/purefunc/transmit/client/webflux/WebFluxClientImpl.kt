@@ -1,21 +1,24 @@
 package net.purefunc.transmit.client.webflux
 
-import net.purefunc.transmit.client.TransmitClient
+import net.purefunc.common.domain.data.type.BusinessOperation
 import org.springframework.core.ParameterizedTypeReference
 import org.springframework.web.reactive.function.client.WebClient
+import transmit.TransmitService
 
 class WebFluxClientImpl(
     private val webClient: WebClient
-) : TransmitClient {
+) : TransmitService {
 
-    override fun sendEmail(email: String, content: String) =
+    override fun sendEmail(address: String, content: String) =
         webClient.post()
             .uri("/api/v1/transmit/email")
-            .bodyValue(mapOf("email" to email, "content" to content))
+            .bodyValue(mapOf("email" to address, "content" to content))
             .retrieve()
             .bodyToMono(object : ParameterizedTypeReference<Map<*, *>>() {})
             .block()["code"]
             .toString()
+            .toBusinessOperation()
+
 
     override fun sendSms(phone: String, content: String) =
         webClient.post()
@@ -25,6 +28,7 @@ class WebFluxClientImpl(
             .bodyToMono(object : ParameterizedTypeReference<Map<*, *>>() {})
             .block()["code"]
             .toString()
+            .toBusinessOperation()
 
     override fun makePhoneCall(phone: String, content: String) =
         webClient.post()
@@ -34,4 +38,7 @@ class WebFluxClientImpl(
             .bodyToMono(object : ParameterizedTypeReference<Map<*, *>>() {})
             .block()["code"]
             .toString()
+            .toBusinessOperation()
 }
+
+private fun String.toBusinessOperation() = BusinessOperation("TRANS_200", "TRANSMIT SERIAL NUMBER", this)

@@ -8,4 +8,7 @@ include("order-domain")
 include("payment-domain")
 include("transmit-domain")
 include("transmit-client")
+include("transmit-server")
+include("transmit-sdk")
 include("wallet-domain")
+

@@ -1,7 +1,7 @@
 package net.funpodium.wallet.domain.repository
 
 import net.funpodium.wallet.domain.data.entity.WalletTxRecord
-import net.funpodium.common.domain.data.type.Page
+import net.purefunc.common.domain.data.type.Page
 
 interface WalletTxRecordRepository {
 

@@ -59,4 +59,19 @@ class WebFluxClientImplTests {
         Assertions.assertThat(transmitClient.sendSms("abc@xyz.com", "Hi, I'm Vincent"))
             .isEqualTo("6e4c43df-8809-496c-bc1f-ca20012e638c")
     }
+
+    @Test
+    internal fun testMakePhoneCall() {
+        mockWebServer.url("/api/v1/transmit/phone")
+        mockWebServer.enqueue(
+            MockResponse()
+                .addHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)
+                .setResponseCode(200)
+                .setBody(objectMapper.writeValueAsString(mapOf("code" to "41a1f84f-ca52-47f1-b9ea-99d5c4d4ab2e")))
+        )
+
+        Assertions.assertThat(transmitClient.sendSms("abc@xyz.com", "Hi, I'm Vincent"))
+            .isEqualTo("41a1f84f-ca52-47f1-b9ea-99d5c4d4ab2e")
+
+    }
 }

@@ -1,4 +1,4 @@
-package net.funpodium.common.domain.data.type
+package net.purefunc.common.domain.data.type
 
 data class Page(
 

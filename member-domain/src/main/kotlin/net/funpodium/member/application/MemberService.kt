@@ -1,7 +1,7 @@
 package net.funpodium.member.application
 
-import net.funpodium.common.domain.data.type.Operation
-import net.funpodium.common.domain.data.type.Page
+import net.purefunc.common.domain.data.type.BusinessOperation
+import net.purefunc.common.domain.data.type.Page
 import net.funpodium.member.domain.data.entity.Member
 import net.funpodium.member.domain.data.type.EMail
 import net.funpodium.member.domain.data.type.Status
@@ -10,13 +10,13 @@ interface MemberService {
 
     // product
 
-    fun login(username: String, password: String): Operation
-
-    fun login(email: EMail, password: String): Operation
-
-    fun signup(email: String): Operation
-
-    fun logout(userId: Long): Operation
+//    fun login(username: String, password: String): BusinessOperation
+//
+//    fun login(email: EMail, password: String): BusinessOperation
+//
+//    fun signup(email: String): BusinessOperation
+//
+//    fun logout(userId: Long): BusinessOperation
 
 //    fun signup(member: Member): Member
 

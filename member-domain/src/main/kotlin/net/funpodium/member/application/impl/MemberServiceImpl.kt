@@ -1,7 +1,7 @@
 package net.funpodium.member.application.impl
 
-import net.funpodium.common.domain.data.type.Operation
-import net.funpodium.common.domain.data.type.Page
+import net.purefunc.common.domain.data.type.BusinessOperation
+import net.purefunc.common.domain.data.type.Page
 import net.funpodium.member.application.MemberService
 import net.funpodium.member.domain.data.type.EMail
 import net.funpodium.member.domain.data.type.Status
@@ -23,32 +23,32 @@ class MemberServiceImpl(
     private val newPasswordContentGenerator: NewPasswordContentGenerator,
 ) : MemberService {
 
-    override fun login(username: String, password: String) =
-        memberRepository.findPasswordByUsername(username)
-            ?.valid(password, passwordEncoder)
-            ?: Operation.LOGIN_FAIL
-
-    override fun login(email: EMail, password: String) =
-        memberRepository.findPasswordByEmail(email.value)
-            ?.valid(password, passwordEncoder)
-            ?: Operation.LOGIN_FAIL
-
-    override fun signup(email: String) =
-        memberRepository.findByEmail(email)
-            .let {
-                if (null != it) {
-                    Operation.SIGNUP_FAIL
-                } else {
-                    transmitClient.sendEmail(email, newPasswordContentGenerator.signupEmail())
-                    Operation.SIGNUP_SUCCESS
-                }
-            }
-
-    override fun logout(userId: Long) =
-        run {
-            sessionHandler.invalid("user:$userId")
-            Operation.LOGOUT_SUCCESS
-        }
+//    override fun login(username: String, password: String) =
+//        memberRepository.findPasswordByUsername(username)
+//            ?.valid(password, passwordEncoder)
+//            ?: BusinessOperation.LOGIN_FAIL
+//
+//    override fun login(email: EMail, password: String) =
+//        memberRepository.findPasswordByEmail(email.value)
+//            ?.valid(password, passwordEncoder)
+//            ?: BusinessOperation.LOGIN_FAIL
+//
+//    override fun signup(email: String) =
+//        memberRepository.findByEmail(email)
+//            .let {
+//                if (null != it) {
+//                    BusinessOperation.SIGNUP_FAIL
+//                } else {
+//                    transmitClient.sendEmail(email, newPasswordContentGenerator.signupEmail())
+//                    BusinessOperation.SIGNUP_SUCCESS
+//                }
+//            }
+//
+//    override fun logout(userId: Long) =
+//        run {
+//            sessionHandler.invalid("user:$userId")
+//            BusinessOperation.LOGOUT_SUCCESS
+//        }
 
     override fun forgetPasswordResetByEmail(username: String) =
         let {
