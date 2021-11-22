@@ -1,8 +1,13 @@
 package net.purefunc.transmit.external
 
-import net.purefunc.common.domain.data.Result
+import net.purefunc.core.domain.data.Result
 
 interface EmailClient {
 
-    fun send(subject: String, personal: String, address: String, htmlContent: String): Result<Unit>
+    fun send(
+        subject: String,
+        personal: String,
+        address: String,
+        htmlContent: String
+    ): Result<Unit>
 }

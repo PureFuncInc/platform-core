@@ -1,6 +1,6 @@
 package net.funpodium.wallet.application.impl
 
-import net.purefunc.common.domain.data.type.Page
+import net.purefunc.core.domain.data.type.Page
 import net.funpodium.wallet.application.WalletService
 import net.funpodium.wallet.domain.data.type.Currency
 import net.funpodium.wallet.domain.exception.WalletNotFoundException

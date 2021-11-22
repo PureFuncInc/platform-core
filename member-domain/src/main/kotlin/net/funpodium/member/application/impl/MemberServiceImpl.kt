@@ -1,7 +1,7 @@
 package net.funpodium.member.application.impl
 
-import net.purefunc.common.domain.data.type.BusinessOperation
-import net.purefunc.common.domain.data.type.Page
+import net.purefunc.core.domain.data.type.BusinessOperation
+import net.purefunc.core.domain.data.type.Page
 import net.funpodium.member.application.MemberService
 import net.funpodium.member.domain.data.type.EMail
 import net.funpodium.member.domain.data.type.Status

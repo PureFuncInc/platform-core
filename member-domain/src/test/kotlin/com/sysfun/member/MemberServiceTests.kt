@@ -5,7 +5,7 @@ import io.cucumber.java.en.Then
 import io.cucumber.java.en.When
 import io.mockk.every
 import io.mockk.mockk
-import net.purefunc.common.domain.data.type.BusinessOperation
+import net.purefunc.core.domain.data.type.BusinessOperation
 import net.funpodium.member.application.impl.MemberServiceImpl
 import net.funpodium.member.domain.data.entity.Member
 import net.funpodium.member.domain.data.type.EMail

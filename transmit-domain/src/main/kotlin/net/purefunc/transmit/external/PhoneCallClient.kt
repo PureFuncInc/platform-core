@@ -1,6 +1,6 @@
 package net.purefunc.transmit.external
 
-import net.purefunc.common.domain.data.Result
+import net.purefunc.core.domain.data.Result
 
 interface PhoneCallClient {
 

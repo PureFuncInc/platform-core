@@ -3,7 +3,7 @@ package net.funpodium.wallet.application
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import net.purefunc.common.domain.data.type.Page
+import net.purefunc.core.domain.data.type.Page
 import net.funpodium.wallet.application.impl.WalletServiceImpl
 import net.funpodium.wallet.domain.data.entity.Wallet
 import net.funpodium.wallet.domain.data.entity.WalletTxRecord

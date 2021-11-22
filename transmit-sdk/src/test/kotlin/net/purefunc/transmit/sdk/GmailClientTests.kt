@@ -1,9 +1,9 @@
 package net.purefunc.transmit.sdk
 
-import net.purefunc.common.domain.data.Success
-import net.purefunc.common.domain.data.otherwise
-import net.purefunc.common.ext.Slf4j
-import net.purefunc.common.ext.Slf4j.Companion.log
+import net.purefunc.core.domain.data.Success
+import net.purefunc.core.domain.data.otherwise
+import net.purefunc.core.ext.Slf4j
+import net.purefunc.core.ext.Slf4j.Companion.log
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 

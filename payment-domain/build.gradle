@@ -1,5 +1,5 @@
 dependencies {
-    implementation project(":common-domain")
+    implementation project(":core-domain")
     implementation "commons-codec:commons-codec:1.15"
     implementation "com.fasterxml.jackson.core:jackson-databind:2.13.0"
     implementation "org.springframework:spring-webflux:5.3.12"

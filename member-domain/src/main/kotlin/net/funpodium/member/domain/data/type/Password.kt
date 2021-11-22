@@ -1,6 +1,6 @@
 package net.funpodium.member.domain.data.type
 
-import net.purefunc.common.domain.data.type.BusinessOperation
+import net.purefunc.core.domain.data.type.BusinessOperation
 import net.funpodium.member.external.PasswordEncoder
 
 data class Password(

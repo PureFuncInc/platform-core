@@ -1,9 +1,9 @@
 package net.purefunc.transmit.sdk
 
-import net.purefunc.common.domain.data.Failure
-import net.purefunc.common.domain.data.Success
-import net.purefunc.common.domain.data.then
-import net.purefunc.common.domain.data.tryOrFailure
+import net.purefunc.core.domain.data.Failure
+import net.purefunc.core.domain.data.Success
+import net.purefunc.core.domain.data.then
+import net.purefunc.core.domain.data.tryOrFailure
 import net.purefunc.transmit.external.EmailClient
 import java.util.Properties
 import javax.mail.Authenticator
@@ -54,7 +54,7 @@ class GmailClient(
         when {
             subject.isEmpty() -> Failure(RuntimeException("subject is empty"))
             personal.isEmpty() -> Failure(RuntimeException("personal is empty"))
-            emailRegex.matches(address) -> Failure(RuntimeException("subject is empty"))
+            emailRegex.matches(address) -> Failure(RuntimeException("address is invalid"))
             htmlContent.isEmpty() -> Failure(RuntimeException("htmlContent is empty"))
             else -> Success("")
         }
