@@ -2,7 +2,6 @@ package net.purefunc.transmit.sdk
 
 import net.purefunc.core.domain.data.Failure
 import net.purefunc.core.domain.data.Success
-import net.purefunc.core.domain.data.then
 import net.purefunc.core.domain.data.tryOrFailure
 import net.purefunc.transmit.external.EmailClient
 import java.util.Properties
@@ -31,31 +30,20 @@ class GmailClient(
     }
 
     override fun send(subject: String, personal: String, address: String, htmlContent: String) =
-        validate(subject, personal, address, htmlContent).then {
-            tryOrFailure {
-                Session.getInstance(properties,
-                    object : Authenticator() {
-                        override fun getPasswordAuthentication(): PasswordAuthentication {
-                            return PasswordAuthentication(userName, password)
-                        }
-                    })
-                    .run {
-                        val mimeMessage = MimeMessage(this)
-                        mimeMessage.setFrom(InternetAddress(userName, personal))
-                        mimeMessage.setRecipients(Message.RecipientType.TO, arrayOf(InternetAddress(address)))
-                        mimeMessage.subject = subject
-                        mimeMessage.setContent(htmlContent, "text/html; charset=UTF-8")
-                        Transport.send(mimeMessage)
+        tryOrFailure {
+            Session.getInstance(properties,
+                object : Authenticator() {
+                    override fun getPasswordAuthentication(): PasswordAuthentication {
+                        return PasswordAuthentication(userName, password)
                     }
-            }
-        }
-
-    private fun validate(subject: String, personal: String, address: String, htmlContent: String) =
-        when {
-            subject.isEmpty() -> Failure(RuntimeException("subject is empty"))
-            personal.isEmpty() -> Failure(RuntimeException("personal is empty"))
-            emailRegex.matches(address) -> Failure(RuntimeException("address is invalid"))
-            htmlContent.isEmpty() -> Failure(RuntimeException("htmlContent is empty"))
-            else -> Success("")
+                })
+                .run {
+                    val mimeMessage = MimeMessage(this)
+                    mimeMessage.setFrom(InternetAddress(userName, personal))
+                    mimeMessage.setRecipients(Message.RecipientType.TO, arrayOf(InternetAddress(address)))
+                    mimeMessage.subject = subject
+                    mimeMessage.setContent(htmlContent, "text/html; charset=UTF-8")
+                    Transport.send(mimeMessage)
+                }
         }
 }
