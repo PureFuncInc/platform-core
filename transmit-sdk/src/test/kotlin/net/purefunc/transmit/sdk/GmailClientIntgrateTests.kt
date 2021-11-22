@@ -8,7 +8,7 @@ import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
 @Slf4j
-class GmailClientTests {
+class GmailClientIntgrateTests {
 
     @Test
     internal fun testSend() {

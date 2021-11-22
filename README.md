@@ -2,7 +2,7 @@
 
 ## Step 1. git clone
 ```shell
-$ git@github.com:20211026/platform-core.git
+$ git@github.com:Pure-Func-Inc/platform-core.git
 ```
 
 ## Step 2. open in Intellij IDEA

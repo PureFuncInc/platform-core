@@ -1,7 +1,5 @@
 package net.purefunc.transmit.sdk
 
-import net.purefunc.core.domain.data.Failure
-import net.purefunc.core.domain.data.Success
 import net.purefunc.core.domain.data.tryOrFailure
 import net.purefunc.transmit.external.EmailClient
 import java.util.Properties
@@ -19,7 +17,6 @@ class GmailClient(
 ) : EmailClient {
 
     private val properties = Properties()
-    private val emailRegex = "^(.+)@(.+)$".toRegex()
 
     init {
         properties["mail.smtp.host"] = "smtp.gmail.com"
@@ -29,21 +26,27 @@ class GmailClient(
         properties["mail.smtp.ssl.protocols"] = "TLSv1.2"
     }
 
-    override fun send(subject: String, personal: String, address: String, htmlContent: String) =
-        tryOrFailure {
-            Session.getInstance(properties,
-                object : Authenticator() {
-                    override fun getPasswordAuthentication(): PasswordAuthentication {
-                        return PasswordAuthentication(userName, password)
-                    }
-                })
-                .run {
-                    val mimeMessage = MimeMessage(this)
-                    mimeMessage.setFrom(InternetAddress(userName, personal))
-                    mimeMessage.setRecipients(Message.RecipientType.TO, arrayOf(InternetAddress(address)))
-                    mimeMessage.subject = subject
-                    mimeMessage.setContent(htmlContent, "text/html; charset=UTF-8")
-                    Transport.send(mimeMessage)
-                }
-        }
+    override fun send(subject: String, personal: String, address: String, htmlContent: String) = tryOrFailure {
+        Transport.send(createMessage(createSession(), personal, address, subject, htmlContent))
+    }
+
+    private fun createMessage(
+        session: Session,
+        personal: String,
+        address: String,
+        subject: String,
+        htmlContent: String
+    ) = MimeMessage(session).apply {
+        this.setFrom(InternetAddress(userName, personal))
+        this.setRecipients(Message.RecipientType.TO, arrayOf(InternetAddress(address)))
+        this.subject = subject
+        this.setContent(htmlContent, "text/html; charset=UTF-8")
+    }
+
+    private fun createSession() = Session.getInstance(properties,
+        object : Authenticator() {
+            override fun getPasswordAuthentication(): PasswordAuthentication {
+                return PasswordAuthentication(userName, password)
+            }
+        })
 }
