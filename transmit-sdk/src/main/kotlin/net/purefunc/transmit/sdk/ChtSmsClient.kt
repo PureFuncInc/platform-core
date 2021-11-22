@@ -7,7 +7,7 @@ import net.purefunc.transmit.external.SmsClient
 import net.purefunc.transmit.sms.CHT
 import java.nio.charset.Charset
 
-class ChtClient(
+class ChtSmsClient(
     private val userName: String,
     private val password: String,
 ) : SmsClient {
