@@ -2,7 +2,7 @@ package net.purefunc.transmit.external
 
 import net.purefunc.core.domain.data.Result
 
-interface PhoneCallClient {
+interface VoiceClient {
 
     fun send(phone: String, content: String): Result<String>
 }

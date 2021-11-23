@@ -5,7 +5,7 @@ import io.mockk.mockk
 import net.purefunc.core.domain.data.Failure
 import net.purefunc.core.domain.data.Success
 import net.purefunc.transmit.external.EmailClient
-import net.purefunc.transmit.external.PhoneCallClient
+import net.purefunc.transmit.external.VoiceClient
 import net.purefunc.transmit.external.SmsClient
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
@@ -14,7 +14,7 @@ class TransmitServiceImplTests {
 
     private val emailClient = mockk<EmailClient>()
     private val smsClient = mockk<SmsClient>()
-    private val phoneCallClient = mockk<PhoneCallClient>()
+    private val phoneCallClient = mockk<VoiceClient>()
 
     private val transmitService = TransmitServiceImpl(emailClient, smsClient, phoneCallClient)
 
