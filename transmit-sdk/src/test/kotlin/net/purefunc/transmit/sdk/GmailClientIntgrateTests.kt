@@ -15,6 +15,8 @@ class GmailClientIntgrateTests {
         val userName = System.getenv("userName")
         val password = System.getenv("password")
 
+        log.info(userName)
+
         val gmailClient = GmailClient(userName, password)
         val result = gmailClient.send(
             subject = "測試Mail 123",

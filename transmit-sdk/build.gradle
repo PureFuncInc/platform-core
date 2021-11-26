@@ -1,6 +1,5 @@
 dependencies {
     implementation project(":core-domain")
     implementation project(":transmit-domain")
-    implementation "ch.qos.logback:logback-classic:1.2.7"
     implementation "javax.mail:mail:1.4.7"
 }

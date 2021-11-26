@@ -23,6 +23,7 @@ subprojects {
 
     dependencies {
         implementation "org.jetbrains.kotlin:kotlin-stdlib"
+        implementation "ch.qos.logback:logback-classic:1.2.7"
         testImplementation "io.cucumber:cucumber-java:6.11.0"
         testImplementation "io.cucumber:cucumber-junit:6.11.0"
         testImplementation "org.junit.vintage:junit-vintage-engine:5.8.1"
