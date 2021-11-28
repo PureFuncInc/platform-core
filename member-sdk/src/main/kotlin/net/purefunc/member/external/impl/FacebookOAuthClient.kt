@@ -9,9 +9,9 @@ class FacebookOAuthClient(
     private val webClient: WebClient,
 ) : OAuthClient {
 
-    override fun fetch(code: String, ttlSeconds: Long) =
-        "https://graph.facebook.com/me?fields=name,email&access_token=$code".getFrom(webClient)
+    override fun fetch(accessToken: String, jwtTtlSeconds: Long) =
+        "https://graph.facebook.com/me?fields=name,email&access_token=$accessToken".getFrom(webClient)
             .let {
-                genMemberBy(it["name"].toString(), ttlSeconds, it["email"].toString())
+                genMemberBy(it["name"].toString(), jwtTtlSeconds, it["email"].toString())
             }
 }

@@ -1,21 +1,20 @@
 package net.purefunc.member.domain.data.entity
 
 import net.purefunc.member.domain.data.type.Status
-import java.util.UUID
 
 data class Member(
 
     val id: Long?,
 
-    var token: String,
+    val token: String,
 
-    var name: String,
+    val name: String,
 
-    var email: String,
+    val email: String,
 
-    var status: Status,
+    val status: Status,
 
-    var role: String,
+    val role: String,
 
-    var lastLoginDate: Long,
+    val lastLoginDate: Long,
 )

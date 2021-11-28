@@ -12,16 +12,16 @@ class GoogleOAuthClient(
     private val redirectUri: String,
 ) : OAuthClient {
 
-    override fun fetch(code: String, ttlSeconds: Long) =
+    override fun fetch(accessToken: String, jwtTtlSeconds: Long) =
         GoogleAuthorizationCodeTokenRequest(
             NetHttpTransport(),
             GsonFactory.getDefaultInstance(),
             clientId,
             clientSecret,
-            code,
+            accessToken,
             redirectUri,
         ).execute()
             .let {
-                genMemberBy(it["name"].toString(), ttlSeconds, it["email"].toString())
+                genMemberBy(it["name"].toString(), jwtTtlSeconds, it["email"].toString())
             }
 }

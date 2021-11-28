@@ -3,12 +3,10 @@ include("core-domain")
 include("logistics-domain")
 include("member-domain")
 include("merchant-domain")
-include("oauth-domain")
-include("oauth-sdk")
 include("order-domain")
 include("payment-domain")
 include("transmit-domain")
 include("transmit-sdk")
 include("wallet-domain")
-include 'member-sdk'
+include("member-sdk")
 

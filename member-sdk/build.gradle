@@ -1,10 +1,18 @@
 dependencies {
-    implementation project(":member-domain")
+    api project(":member-domain")
 
-    implementation "com.google.api-client:google-api-client:1.32.2"
-    implementation "com.google.http-client:google-http-client-gson:1.40.1"
+    api "com.google.api-client:google-api-client:1.32.2"
+    api "com.google.http-client:google-http-client-gson:1.40.1"
 
-    implementation "org.springframework:spring-webflux:5.3.13"
+    api "org.springframework:spring-webflux:5.3.13"
 
-    implementation "io.jsonwebtoken:jjwt-impl:0.11.2"
+    api "io.jsonwebtoken:jjwt-impl:0.11.2"
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
 }

@@ -16,6 +16,7 @@ allprojects {
 
 subprojects {
     apply plugin: "org.jetbrains.kotlin.jvm"
+    apply plugin: "maven-publish"
 
     repositories {
         mavenCentral()
@@ -23,7 +24,7 @@ subprojects {
 
     dependencies {
         implementation "org.jetbrains.kotlin:kotlin-stdlib"
-        implementation "ch.qos.logback:logback-classic:1.2.7"
+        implementation "org.slf4j:slf4j-api:1.7.32"
         testImplementation "io.cucumber:cucumber-java:6.11.0"
         testImplementation "io.cucumber:cucumber-junit:6.11.0"
         testImplementation "org.junit.vintage:junit-vintage-engine:5.8.1"

@@ -4,7 +4,7 @@ import net.purefunc.member.domain.data.entity.Member
 
 interface MemberRepository {
 
-    fun persist(member: Member): Member
+    suspend fun persist(member: Member): Member
 
-    fun queryByEmail(email: String): Member?
+    suspend fun queryByEmail(email: String): Member?
 }

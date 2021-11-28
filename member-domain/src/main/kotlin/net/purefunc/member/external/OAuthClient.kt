@@ -4,5 +4,5 @@ import net.purefunc.member.domain.data.entity.Member
 
 interface OAuthClient {
 
-    fun fetch(code: String, ttlSeconds: Long): Member?
+    fun fetch(accessToken: String, jwtTtlSeconds: Long): Member?
 }

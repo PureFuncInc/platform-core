@@ -4,5 +4,5 @@ import net.purefunc.member.domain.data.entity.Member
 
 interface MemberService {
 
-    fun fetchVia(code: String, ttlSeconds: Long): Member?
+    suspend fun fetchVia(code: String, ttlSeconds: Long): Member?
 }

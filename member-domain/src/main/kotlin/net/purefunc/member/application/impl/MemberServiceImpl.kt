@@ -9,6 +9,7 @@ class MemberServiceImpl(
     private val memberRepository: MemberRepository,
 ) : MemberService {
 
-    override fun fetchVia(code: String, ttlSeconds: Long) =
-        oauthClient.fetch(code, ttlSeconds)?.run { memberRepository.queryByEmail(email) ?: memberRepository.persist(this) }
+    override suspend fun fetchVia(code: String, ttlSeconds: Long) =
+        oauthClient.fetch(code, ttlSeconds)
+            ?.run { memberRepository.queryByEmail(email) ?: memberRepository.persist(this) }
 }

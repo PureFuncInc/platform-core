@@ -1,0 +1,11 @@
+dependencies {
+    api project(":core-domain")
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
+}
