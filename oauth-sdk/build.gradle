@@ -1,0 +1,5 @@
+dependencies {
+    implementation project(":core-domain")
+    implementation project(":oauth-domain")
+    implementation project(":oauth-sdk")
+}
