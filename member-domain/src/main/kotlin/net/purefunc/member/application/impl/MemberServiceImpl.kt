@@ -11,5 +11,7 @@ class MemberServiceImpl(
 
     override suspend fun fetchVia(code: String, ttlSeconds: Long) =
         oauthClient.fetch(code, ttlSeconds)
-            ?.run { memberRepository.queryByEmail(email) ?: memberRepository.persist(this) }
+            ?.run {
+                (memberRepository.queryByEmail(email) ?: memberRepository.persist(this)).copy(token = token)
+            }
 }
