@@ -26,5 +26,13 @@ class JwtToken {
                         .signWith(Keys.hmacShaKeyFor(SECRET.toByteArray()), SignatureAlgorithm.HS512)
                         .compact()
                 }
+
+        fun retrieveSubject(code: String) =
+            Jwts.parserBuilder()
+                .setSigningKey(Keys.hmacShaKeyFor(SECRET.toByteArray()))
+                .build()
+                .parseClaimsJws(code)
+                .body
+                .subject
     }
 }
