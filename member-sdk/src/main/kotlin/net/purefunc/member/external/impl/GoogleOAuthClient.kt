@@ -1,5 +1,6 @@
 package net.purefunc.member.external.impl
 
+import arrow.core.Either
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeTokenRequest
 import com.google.api.client.http.javanet.NetHttpTransport
 import com.google.api.client.json.gson.GsonFactory
@@ -17,18 +18,20 @@ class GoogleOAuthClient(
     private val redirectUri: String,
 ) : OAuthClient {
 
-    override fun fetch(accessToken: String, jwtTtlSeconds: Long) =
-        GoogleAuthorizationCodeTokenRequest(
-            NetHttpTransport(),
-            GsonFactory.getDefaultInstance(),
-            clientId,
-            clientSecret,
-            accessToken,
-            redirectUri,
-        ).execute().parseIdToken().payload
-            .let {
-                genMemberBy(it["name"].toString(), jwtTtlSeconds, it["email"].toString())
-            }
+    override suspend fun fetch(accessToken: String, jwtTtlSeconds: Long) =
+        Either.catch {
+            GoogleAuthorizationCodeTokenRequest(
+                NetHttpTransport(),
+                GsonFactory.getDefaultInstance(),
+                clientId,
+                clientSecret,
+                accessToken,
+                redirectUri,
+            ).execute().parseIdToken().payload
+                .let {
+                    genMemberBy(it["name"].toString(), jwtTtlSeconds, it["email"].toString())
+                }
+        }
 
     private fun genMemberBy(
         name: String,
@@ -53,11 +56,3 @@ class GoogleOAuthClient(
         )
     }
 }
-
-//fun main() {
-//    GoogleOAuthClient(
-//        clientId = "820332047932-3chgneoe75ef6nv1o3d0hlh8spkiur52.apps.googleusercontent.com",
-//        clientSecret = "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",
-//        redirectUri = "http://localhost:8080",
-//    ).fetch("4/0AX4XfWjlXoQ7RydkszEmLBx_yrF2mwoOItjvGpvOwxjTm6Ie0ItIMu4FDd8ci-n7woM4lw", 60L* 60L)
-//}

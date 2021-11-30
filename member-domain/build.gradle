@@ -1,5 +1,11 @@
+apply plugin: "kotlin-kapt"
+
+def arrow_version = "0.11.0"
 dependencies {
     api project(":core-domain")
+    api "io.arrow-kt:arrow-core:$arrow_version"
+    api "io.arrow-kt:arrow-syntax:$arrow_version"
+    kapt "io.arrow-kt:arrow-meta:$arrow_version"
 }
 
 publishing {

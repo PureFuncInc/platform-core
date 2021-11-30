@@ -1,10 +1,9 @@
 package net.purefunc.member.domain.repository
 
+import arrow.core.Either
 import net.purefunc.member.domain.data.entity.Member
 
 interface MemberRepository {
 
-    suspend fun persist(member: Member): Member
-
-    suspend fun queryByEmail(email: String): Member?
+    suspend fun queryOrPersist(member: Member): Either<Throwable, Member>
 }

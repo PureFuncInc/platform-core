@@ -1,8 +1,9 @@
 package net.purefunc.member.external
 
+import arrow.core.Either
 import net.purefunc.member.domain.data.entity.Member
 
 interface OAuthClient {
 
-    fun fetch(accessToken: String, jwtTtlSeconds: Long): Member?
+    suspend fun fetch(accessToken: String, jwtTtlSeconds: Long): Either<Throwable, Member>
 }

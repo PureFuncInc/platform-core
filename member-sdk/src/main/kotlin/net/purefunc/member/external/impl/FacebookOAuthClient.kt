@@ -1,5 +1,6 @@
 package net.purefunc.member.external.impl
 
+import arrow.core.Either
 import net.purefunc.member.data.vo.JwtToken
 import net.purefunc.member.domain.data.entity.Member
 import net.purefunc.member.domain.data.type.Status
@@ -12,11 +13,13 @@ class FacebookOAuthClient(
     private val webClient: WebClient,
 ) : OAuthClient {
 
-    override fun fetch(accessToken: String, jwtTtlSeconds: Long) =
-        "https://graph.facebook.com/me?fields=name,email&access_token=$accessToken".getFrom(webClient)
-            .let {
-                genMemberBy(it["name"].toString(), jwtTtlSeconds, it["email"].toString())
-            }
+    override suspend fun fetch(accessToken: String, jwtTtlSeconds: Long) =
+        Either.catch {
+            "https://graph.facebook.com/me?fields=name,email&access_token=$accessToken".getFrom(webClient)
+                .let {
+                    genMemberBy(it["name"].toString(), jwtTtlSeconds, it["email"].toString())
+                }
+        }
 
     private fun String.getFrom(webClient: WebClient) = webClient.get()
         .uri(this)
