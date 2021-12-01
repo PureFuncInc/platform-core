@@ -10,6 +10,7 @@ open class MemberFunc {
     fun genMemberBy(
         name: String,
         ttlSeconds: Long,
+        role: String,
         email: String,
     ) = JwtToken.generate(
         id = UUID.randomUUID().toString(),
@@ -22,7 +23,7 @@ open class MemberFunc {
             token = it,
             name = name,
             email = email,
-            role = "USER",
+            role = role,
             status = Status.ACTIVE,
             lastLoginDate = System.currentTimeMillis(),
         )

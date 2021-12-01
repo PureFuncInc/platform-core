@@ -13,7 +13,8 @@ class MemberServiceImpl(
     override suspend fun fetchVia(
         code: String,
         ttlSeconds: Long,
-    ) = oauthClient.fetch(code, ttlSeconds)
+        role: String,
+    ) = oauthClient.fetch(code, ttlSeconds, role)
         .flatMap { member ->
             memberRepository.queryOrPersist(member).map { it.copy(token = member.token) }
         }

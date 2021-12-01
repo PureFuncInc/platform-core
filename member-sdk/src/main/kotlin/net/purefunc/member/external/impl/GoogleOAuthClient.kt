@@ -15,7 +15,7 @@ class GoogleOAuthClient(
     private val redirectUri: String,
 ) : OAuthClient, MemberFunc() {
 
-    override suspend fun fetch(accessToken: String, jwtTtlSeconds: Long) =
+    override suspend fun fetch(accessToken: String, jwtTtlSeconds: Long, role: String) =
         Either.catch {
             GoogleAuthorizationCodeTokenRequest(
                 NetHttpTransport(),
@@ -29,6 +29,7 @@ class GoogleOAuthClient(
                     genMemberBy(
                         name = it["name"].toString(),
                         ttlSeconds = jwtTtlSeconds,
+                        role = role,
                         email = it["email"].toString(),
                     )
                 }

@@ -10,13 +10,14 @@ class FacebookOAuthClient(
     private val webClient: WebClient,
 ) : OAuthClient, MemberFunc() {
 
-    override suspend fun fetch(accessToken: String, jwtTtlSeconds: Long) =
+    override suspend fun fetch(accessToken: String, jwtTtlSeconds: Long, role: String) =
         Either.catch {
             "https://graph.facebook.com/me?fields=name,email&access_token=$accessToken".getFrom(webClient)
                 .let {
                     genMemberBy(
                         name = it["name"].toString(),
                         ttlSeconds = jwtTtlSeconds,
+                        role = role,
                         email = it["email"].toString(),
                     )
                 }

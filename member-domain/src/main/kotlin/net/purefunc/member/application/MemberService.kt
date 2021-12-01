@@ -5,5 +5,5 @@ import net.purefunc.member.domain.data.entity.Member
 
 interface MemberService {
 
-    suspend fun fetchVia(code: String, ttlSeconds: Long): Either<Throwable, Member>
+    suspend fun fetchVia(code: String, ttlSeconds: Long, role: String): Either<Throwable, Member>
 }
