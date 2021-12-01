@@ -10,9 +10,11 @@ class MemberServiceImpl(
     private val memberRepository: MemberRepository,
 ) : MemberService {
 
-    override suspend fun fetchVia(code: String, ttlSeconds: Long) =
-        oauthClient.fetch(code, ttlSeconds)
-            .flatMap { member ->
-                memberRepository.queryOrPersist(member).map { it.copy(token = member.token) }
-            }
+    override suspend fun fetchVia(
+        code: String,
+        ttlSeconds: Long,
+    ) = oauthClient.fetch(code, ttlSeconds)
+        .flatMap { member ->
+            memberRepository.queryOrPersist(member).map { it.copy(token = member.token) }
+        }
 }

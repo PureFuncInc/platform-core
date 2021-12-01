@@ -1,23 +1,24 @@
 package net.purefunc.member.external.impl
 
 import arrow.core.Either
-import net.purefunc.member.data.vo.JwtToken
-import net.purefunc.member.domain.data.entity.Member
-import net.purefunc.member.domain.data.type.Status
+import net.purefunc.member.MemberFunc
 import net.purefunc.member.external.OAuthClient
 import org.springframework.core.ParameterizedTypeReference
 import org.springframework.web.reactive.function.client.WebClient
-import java.util.UUID
 
 class FacebookOAuthClient(
     private val webClient: WebClient,
-) : OAuthClient {
+) : OAuthClient, MemberFunc() {
 
     override suspend fun fetch(accessToken: String, jwtTtlSeconds: Long) =
         Either.catch {
             "https://graph.facebook.com/me?fields=name,email&access_token=$accessToken".getFrom(webClient)
                 .let {
-                    genMemberBy(it["name"].toString(), jwtTtlSeconds, it["email"].toString())
+                    genMemberBy(
+                        name = it["name"].toString(),
+                        ttlSeconds = jwtTtlSeconds,
+                        email = it["email"].toString(),
+                    )
                 }
         }
 
@@ -26,27 +27,4 @@ class FacebookOAuthClient(
         .retrieve()
         .bodyToMono(object : ParameterizedTypeReference<Map<*, *>>() {})
         .block()
-
-    private fun genMemberBy(
-        name: String,
-        ttlSeconds: Long,
-        email: String,
-    ) = run {
-        val token = JwtToken.generate(
-            id = UUID.randomUUID().toString(),
-            subject = name,
-            issueAt = System.currentTimeMillis(),
-            expiration = System.currentTimeMillis() + (ttlSeconds * 60L * 60L * 1000L),
-        )
-
-        Member(
-            id = null,
-            token = token,
-            name = name,
-            email = email,
-            role = "USER",
-            status = Status.ACTIVE,
-            lastLoginDate = System.currentTimeMillis(),
-        )
-    }
 }
