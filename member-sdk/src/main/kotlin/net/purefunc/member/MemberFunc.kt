@@ -7,7 +7,7 @@ import java.util.UUID
 
 open class MemberFunc {
 
-    fun genMemberBy(
+    fun initMember(
         name: String,
         ttlSeconds: Long,
         role: String,

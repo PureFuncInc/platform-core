@@ -26,7 +26,7 @@ class GoogleOAuthClient(
                 redirectUri,
             ).execute().parseIdToken().payload
                 .let {
-                    genMemberBy(
+                    initMember(
                         name = it["name"].toString(),
                         ttlSeconds = jwtTtlSeconds,
                         role = role,

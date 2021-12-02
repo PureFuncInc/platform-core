@@ -14,7 +14,7 @@ class FacebookOAuthClient(
         Either.catch {
             "https://graph.facebook.com/me?fields=name,email&access_token=$accessToken".getFrom(webClient)
                 .let {
-                    genMemberBy(
+                    initMember(
                         name = it["name"].toString(),
                         ttlSeconds = jwtTtlSeconds,
                         role = role,

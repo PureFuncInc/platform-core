@@ -16,6 +16,7 @@ class MemberServiceImpl(
         role: String,
     ) = oauthClient.fetch(code, ttlSeconds, role)
         .flatMap { member ->
-            memberRepository.queryOrPersist(member).map { it.copy(token = member.token) }
+            memberRepository.queryOrPersist(member)
+                .map { it.copy(token = member.token) }
         }
 }
