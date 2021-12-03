@@ -1,6 +1,6 @@
 package net.purefunc.member.external.impl
 
-import arrow.core.Either
+import arrow.core.Either.Companion.catch
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeTokenRequest
 import com.google.api.client.http.javanet.NetHttpTransport
 import com.google.api.client.json.gson.GsonFactory
@@ -16,7 +16,7 @@ class GoogleOAuthClient(
 ) : OAuthClient, MemberFunc() {
 
     override suspend fun fetch(accessToken: String, jwtTtlSeconds: Long, role: String) =
-        Either.catch {
+        catch {
             GoogleAuthorizationCodeTokenRequest(
                 NetHttpTransport(),
                 GsonFactory.getDefaultInstance(),

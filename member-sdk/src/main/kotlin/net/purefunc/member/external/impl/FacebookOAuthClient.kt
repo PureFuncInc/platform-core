@@ -1,6 +1,6 @@
 package net.purefunc.member.external.impl
 
-import arrow.core.Either
+import arrow.core.Either.Companion.catch
 import net.purefunc.member.MemberFunc
 import net.purefunc.member.external.OAuthClient
 import org.springframework.core.ParameterizedTypeReference
@@ -11,7 +11,7 @@ class FacebookOAuthClient(
 ) : OAuthClient, MemberFunc() {
 
     override suspend fun fetch(accessToken: String, jwtTtlSeconds: Long, role: String) =
-        Either.catch {
+        catch {
             "https://graph.facebook.com/me?fields=name,email&access_token=$accessToken".getFrom(webClient)
                 .let {
                     initMember(
