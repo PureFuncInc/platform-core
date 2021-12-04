@@ -16,7 +16,7 @@ open class MemberFunc {
         id = UUID.randomUUID().toString(),
         subject = name,
         issueAt = System.currentTimeMillis(),
-        expiration = System.currentTimeMillis() + (ttlSeconds * 60L * 60L * 1000L),
+        expiration = System.currentTimeMillis() + (ttlSeconds * 1000L),
     ).let {
         Member(
             id = null,
