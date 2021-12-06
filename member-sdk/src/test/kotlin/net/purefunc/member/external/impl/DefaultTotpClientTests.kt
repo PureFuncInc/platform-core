@@ -5,7 +5,6 @@ import kotlinx.coroutines.runBlocking
 import net.purefunc.member.domain.data.entity.Member
 import net.purefunc.member.domain.data.type.Status
 import org.assertj.core.api.Assertions
-import org.junit.Ignore
 import org.junit.jupiter.api.Test
 
 class DefaultTotpClientTests {
@@ -37,16 +36,15 @@ class DefaultTotpClientTests {
         }
     }
 
-    @Ignore
-    @Test
-    internal fun `test verify code`() {
-        runBlocking {
-            DefaultTotpClient().verifyCode(member.copy(secret = "WEZDKYCQG7TDPOQRIZIKPAVG74L5PTAPD3DBEX7XGC6MJPD4IKWF5O3YL3C5VEAR"),
-                "449848")
-                .fold(
-                    ifLeft = { println(it.message) },
-                    ifRight = { Assertions.assertThat(it).isTrue }
-                )
-        }
-    }
+//    @Test
+//    internal fun `test verify code`() {
+//        runBlocking {
+//            DefaultTotpClient().verifyCode(member.copy(secret = "WEZDKYCQG7TDPOQRIZIKPAVG74L5PTAPD3DBEX7XGC6MJPD4IKWF5O3YL3C5VEAR"),
+//                "449848")
+//                .fold(
+//                    ifLeft = { println(it.message) },
+//                    ifRight = { Assertions.assertThat(it).isTrue }
+//                )
+//        }
+//    }
 }
