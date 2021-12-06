@@ -2,4 +2,5 @@ dependencies {
     implementation project(":core-domain")
     implementation project(":transmit-domain")
     implementation "javax.mail:mail:1.4.7"
+    implementation "dev.samstevens.totp:totp:1.7.1"
 }
