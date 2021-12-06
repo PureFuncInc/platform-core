@@ -1,5 +1,6 @@
 package net.purefunc.member
 
+import dev.samstevens.totp.secret.DefaultSecretGenerator
 import net.purefunc.member.data.vo.JwtToken
 import net.purefunc.member.domain.data.entity.Member
 import net.purefunc.member.domain.data.type.Status
@@ -25,6 +26,7 @@ open class MemberFunc {
             email = email,
             role = role,
             status = Status.ACTIVE,
+            secret = DefaultSecretGenerator(64).generate(),
             lastLoginDate = System.currentTimeMillis(),
         )
     }
