@@ -16,5 +16,7 @@ data class Member(
 
     val role: String,
 
+    val secret: String,
+
     val lastLoginDate: Long,
 )
