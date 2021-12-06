@@ -1,2 +1,0 @@
-- name: Delete Package Versions
-  uses: actions/delete-package-versions@v2.0.0
