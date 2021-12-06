@@ -16,14 +16,14 @@ jobs:
         with:
           package-name: net.purefunc.core-domain
           min-versions-to-keep: 1
-          token: ${{ secrets.PUBLISH_TOKEN }}
+          token: ${{ secrets.GITHUB_PAT }}
       - uses: actions/delete-package-versions@v2
         with:
           package-name: net.purefunc.member-domain
           min-versions-to-keep: 1
-          token: ${{ secrets.PUBLISH_TOKEN }}
+          token: ${{ secrets.GITHUB_PAT }}
       - uses: actions/delete-package-versions@v2
         with:
           package-name: net.purefunc.member-sdk
           min-versions-to-keep: 1
-          token: ${{ secrets.PUBLISH_TOKEN }}
+          token: ${{ secrets.GITHUB_PAT }}
