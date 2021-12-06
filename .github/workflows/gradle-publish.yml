@@ -14,6 +14,16 @@ jobs:
     steps:
       - uses: actions/delete-package-versions@v2
         with:
-          package-name: net.purefunc.core-domain,net.purefunc.member-domain,net.purefunc.member-sdk
+          package-name: net.purefunc.core-domain
+          min-versions-to-keep: 1
+          token: ${{ secrets.PUBLISH_TOKEN }}
+      - uses: actions/delete-package-versions@v2
+        with:
+          package-name: net.purefunc.member-domain
+          min-versions-to-keep: 1
+          token: ${{ secrets.PUBLISH_TOKEN }}
+      - uses: actions/delete-package-versions@v2
+        with:
+          package-name: net.purefunc.member-sdk
           min-versions-to-keep: 1
           token: ${{ secrets.PUBLISH_TOKEN }}
