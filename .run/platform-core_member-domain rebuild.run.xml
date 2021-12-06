@@ -2,11 +2,6 @@
     <configuration default="false" name="platform-core:member-domain rebuild" type="GradleRunConfiguration"
                    factoryName="Gradle">
         <ExternalSystemSettings>
-            <option name="env">
-                <map>
-                    <entry key="GITHUB_PUBLISH_TOKEN" value="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"/>
-                </map>
-            </option>
             <option name="executionName"/>
             <option name="externalProjectPath" value="$PROJECT_DIR$/member-domain"/>
             <option name="externalSystemIdString" value="GRADLE"/>
