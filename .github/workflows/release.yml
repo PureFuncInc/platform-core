@@ -57,6 +57,8 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: "11"
-          distribution: "adopt"
+          distribution: "temurin"
           check-latest: true
       - run: ./gradlew publishMavenPublicationToGitHubPackagesRepository
+        env:
+          GITHUB_PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
