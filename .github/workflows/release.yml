@@ -14,43 +14,43 @@ jobs:
           package-name: net.purefunc.core-domain
           min-versions-to-keep: 3
           token: ${{ secrets.PUBLISH_TOKEN }}
-          ignore-versions: "^\d+.\d+.0$"
+          ignore-versions: "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.0$"
       - uses: actions/delete-package-versions@v2
         with:
           package-name: net.purefunc.member-domain
           min-versions-to-keep: 3
           token: ${{ secrets.PUBLISH_TOKEN }}
-          ignore-versions: "^\d+.\d+.0$"
+          ignore-versions: "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.0$"
       - uses: actions/delete-package-versions@v2
         with:
           package-name: net.purefunc.wallet-domain
           min-versions-to-keep: 3
           token: ${{ secrets.PUBLISH_TOKEN }}
-          ignore-versions: "^\d+.\d+.0$"
+          ignore-versions: "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.0$"
       - uses: actions/delete-package-versions@v2
         with:
           package-name: net.purefunc.trasmit-domain
           min-versions-to-keep: 3
           token: ${{ secrets.PUBLISH_TOKEN }}
-          ignore-versions: "^\d+.\d+.0$"
+          ignore-versions: "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.0$"
       - uses: actions/delete-package-versions@v2
         with:
           package-name: net.purefunc.payment-domain
           min-versions-to-keep: 3
           token: ${{ secrets.PUBLISH_TOKEN }}
-          ignore-versions: "^\d+.\d+.0$"
+          ignore-versions: "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.0$"
       - uses: actions/delete-package-versions@v2
         with:
           package-name: net.purefunc.member-sdk
           min-versions-to-keep: 3
           token: ${{ secrets.PUBLISH_TOKEN }}
-          ignore-versions: "^\d+.\d+.0$"
+          ignore-versions: "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.0$"
       - uses: actions/delete-package-versions@v2
         with:
           package-name: net.purefunc.transmit-sdk
           min-versions-to-keep: 3
           token: ${{ secrets.PUBLISH_TOKEN }}
-          ignore-versions: "^\d+.\d+.0$"
+          ignore-versions: "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.0$"
 
       - uses: actions/checkout@v2
       - name: Set up JDK 11
