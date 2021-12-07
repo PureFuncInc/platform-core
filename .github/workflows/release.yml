@@ -59,4 +59,4 @@ jobs:
           java-version: "11"
           distribution: "adopt"
           check-latest: true
-          - run: ./gradlew publishMavenPublicationToGitHubPackagesRepository
+      - run: ./gradlew publishMavenPublicationToGitHubPackagesRepository
