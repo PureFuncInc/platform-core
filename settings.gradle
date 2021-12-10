@@ -1,8 +1,8 @@
 rootProject.name = "platform-core"
 include("core-domain")
 include("member-domain")
-include("member-sdk")
 include("payment-domain")
-include("transmit-domain")
-include("transmit-sdk")
 include("wallet-domain")
+include("transmit-domain")
+include("member-sdk")
+include("transmit-sdk")
